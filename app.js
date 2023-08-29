@@ -15,119 +15,28 @@ const mysql = require("mysql");
  */
 let datos = [];
 
-/**
- * Declaramos las conexiones de MySQL
- */
-const MYSQL_DB_HOST = "localhost";
-const MYSQL_DB_USER = "tester";
-const MYSQL_DB_PASSWORD = "xapala";
-const MYSQL_DB_NAME = "pepito";
-const MYSQL_DB_PORT = "3306";
-
-const connection = mysql.createConnection({
-  host     : MYSQL_DB_HOST,
-  user     : MYSQL_DB_USER,
-  password : MYSQL_DB_PASSWORD,
-  database : MYSQL_DB_NAME
-});
 
 
-const flowSecundario = addKeyword(["1"]).addAnswer(
-  "preciona el link👉🏻https://agencyagartha.cl/shop/"
+
+const carreraCiber = addKeyword(["1"]).addAnswer(
+ "Soy Técnico, estoy capacitado para administrar redes de datos Lan, administrar sistemas operativos para servidores y desarrollar sistemas web y aplicaciones de escritorio, asegurando la continuidad operativa de la organización en estos ámbitos. Conoce mas entrando aquí: https://www.ceduc.cl/carreras/computacion-e-informatica-mencion-programacion/"
 );
-const flowpregunta = addKeyword(["2"]).addAnswer(
-  "preciona el link👉🏻https://agencyagartha.cl/our-services/"
+const carreraProgra = addKeyword(["2"]).addAnswer(
+  "La carrera de TNS en Computación e Informática mención Ciberseguridad está dirigida a egresados de enseñanza media técnico- profesional o científico- humanista; personas con estudios formales en el área (conclusos o inconclusos); y a trabajadores que cuenten con experiencia laboral en el ámbito de la informática (con o sin certificación). Conoce mas entrando aquí: https://www.ceduc.cl/carreras/computacion-e-informatica-mencion-ciberseguridad/"
 );
-const flowcanva = addKeyword(["3"]).addAnswer(
-  "preciona el link👉🏻https://www.canva.com/es_mx/pro/"
+const mallaCiber = addKeyword(["3"]).addAnswer(
+  "Conoce nuestra malla entrando en el siguiente link: https://www.ceduc.cl/content/uploads/CIP-3.pdf"
 );
-const flowmegusto = addKeyword(["7"]).addAnswer("😃");
-const flownomegusto = addKeyword(["4"]).addAnswer("😡");
-const flowcomentario = addKeyword([
-  "finalizar",
-  "Finalizar",
-  "fin",
-  "terminar",
-  "Terminar",
-]).addAnswer([
-  "Gracias!!😁 por comunicarte con *Agarta Marketing gency*",
-  "",
-  "estaremos en contacto nuevamente !!!",
-]);
-
-const flowpmenu = addKeyword(["menu", "Menu", "MENU", "Listado"]).addAnswer([
-  "MENU📝",
-  "",
-  "Email",
-  "",
-  "-https://agencyagartha.cl/email-marketing/ ☑",
-  "",
-  "Media",
-  "",
-  "https://agencyagartha.cl/social-media-marketing/☑",
-  "",
-  "SEO",
-  "",
-  " - https://agencyagartha.cl/search-engine-optimization/☑",
-  "",
-  "Local",
-  "",
-  " - https://agencyagartha.cl/local-seo/",
-  "",
-  "Click",
-  " - https://agencyagartha.cl/pay-per-click-ppc-management/☑",
-  "",
-  "",
-  "ABC",
-  "",
-  "  - https://agencyagartha.cl/our-services/ ☑",
-]);
-
-const flowAgartha = addKeyword(["Agartha", "documentacion", "documentación"]);
-
-const flowTerminar = addKeyword(["Gracias", "grac"]).addAnswer(
-  [
-    "🚀 Puedes aportar tu granito de arena a este proyecto",
-    "[*opencollective*] https://opencollective.com/bot-whatsapp",
-    "[*buymeacoffee*] https://www.buymeacoffee.com/leifermendez",
-    "[*patreon*] https://www.patreon.com/leifermendez",
-    "\n*2* Para siguiente paso.",
-  ],
-  null,
-  null,
-  [flowSecundario]
+const mallaProgra = addKeyword(["4"]).addAnswer(
+  "Conoce nuestra malla entrando al siguiente link: https://www.ceduc.cl/content/uploads/CIC-2.pdf"
 );
 
-
-/*const flowDatos = addKeyword(["1", "⬅️ Volver al Inicio"])
-  .addAnswer(
-    [
-      "Hola!",
-      "Para enviar el formulario necesito unos datos...",
-      "Escriba su *Nombre*",
-    ],
-    { capture: true, buttons: [{ body: "❌ Cancelar solicitud" }] },
-    async (ctx, { flowDynamic, endFlow }) => {
-      if (ctx.body == "❌ Cancelar solicitud")
-        return endFlow({
-          body: "❌ Su solicitud ha sido cancelada ❌", // Aquí terminamos el flow si la condicion se comple
-          buttons: [{ body: "⬅️ Volver al Inicio" }], // Y además, añadimos un botón por si necesitas derivarlo a otro flow
-        });
-      nombre = ctx.body;
-      return flowDynamic(`Encantado *${nombre}*, continuamos...`);
-    }
-  )*/
 
 const flowSaludo = addKeyword(["Hola", "Buenas", "HOLA", "Hola"])
   .addAnswer([
-    "Hola 😁 En Agartha Marketing Agency te damos la bienvenida.",
-    "Te has comunicado con Agartha Marketing Agency.",
-    "",
-    "Este es nuestro nuevo sistema de Chat Bot de Autoatención ABC System.",
-    "Es una prueba Beta de este sistema por lo que agradecemos tu colaboración y sugerencias.",
-    "Esta supervisada en tiempo real por ejecutivos humanos",
-    "",
-    "Un gusto porder atenderte 🙌",
+    "Hola 😁 Bienvenido al ChatBot de ExpoCeduc 2023 - Escuela de Computación e Informática",
+    "Soy el ChatBot de ExpoCeduc 2023 - Escuela de Computación e Informática",
+    "Un gusto porder atenderte 🙌. Soy el Asistente Virtual de la Escuela de Computación e Informática",
   ])
 
   .addAnswer(
@@ -142,27 +51,7 @@ const flowSaludo = addKeyword(["Hola", "Buenas", "HOLA", "Hola"])
   )
 
   .addAnswer(
-    "¿Tu Apellido Paterno?",
-    { capture: true /*buttons: [{ body: "❌ Cancelar solicitud" }]*/ },
-    (ctx, { fallBack }) => {
-      if (!ctx.body.includes("")) {
-        return fallBack();
-      }
-      paterno = ctx.body
-    }
-  )
-  .addAnswer(
-    "Apellido Materno",
-    { capture: true /*buttons: [{ body: "❌ Cancelar solicitud" }]*/ },
-    (ctx, { fallBack }) => {
-      if (!ctx.body.includes("")) {
-        return fallBack();
-      }
-      materno = ctx.body
-    }
-  )
-  .addAnswer(
-    "Correo Electronico",
+    "facilitanos una dirección de correo elecrónico por favor: ",
     { capture: true /*buttons: [{ body: "❌ Cancelar solicitud" }]*/ },
     (ctx, { fallBack }) => {
       if (!ctx.body.includes("@")) {
@@ -172,109 +61,55 @@ const flowSaludo = addKeyword(["Hola", "Buenas", "HOLA", "Hola"])
     }
   )
 
-  .addAnswer("Gracias por la Información, verificando datos de acceso 🕓",null,(ctx) => {
-    nom = nombre
-    pat = paterno
-    mat = materno
+  .addAnswer("Gracias por la Información.",null,(ctx) => {
+    nom = nombre    
     corr = correo    
-    setDataToDB({'Nombre': nom ,'Apellidos': pat + ' ' +  mat, 'Correo': corr});
-    console.log('👉 Informacion del cliente: ', datos)        
+    // setDataToDB({'Nombre': nom ,'Apellidos': pat + ' ' +  mat, 'Correo': corr});
+    console.log('👉 Se ha conectado un cliente ', datos)        
   }
-  )
-  .addAnswer("datos guardados con exito", { delay: 1700 })
-  .addAnswer(
-    "Encuenta de Atencion coloca *siguiente*",
-    { capture: true /*buttons: [{ body: "❌ Cancelar solicitud" }]*/ },
-    (ctx, { fallBack }) => {
-      if (!ctx.body.includes("siguiente")) {
-        return fallBack();
-      }
-      console.log("Aquí viene todo: ", ctx.body);
-    }
-  )
+  )   
+
   .addAnswer([
-    "*Indicanos en qué podemos ayudarte* 🌀",
+    "*¿Que deseas conocer?* 🌀",
     "",
-    "Seleccione *1* ¿Cotizar Página Web?",
+    "1) Obtener información de la carrera con mención en Ciberseguridad",
     "",
-    "Seleccione *2* ¿Cotizar ABC System de Autoatención?",
+    "2) Obtener información de la carrera con mención en Programación",
     "",
-    "Seleccione *3* ¿Comprar Canva Pro?",
+    "3) Conocer la malla curricular de Computación e informática mención programación",
     "",
-    "Escribe *Listado* para ver todos nuestos links",
+    "4)	Conocer la malla curricular de Computación e informática mención ciberseguridad.",
     "",
-    "*Encuesta de nuestra atencion* 💭",
-    "",
-    "Escriba *7* ¿si me gusta?",
-    "",
-    "Escriba *8* ¿no me gusto?",
-    "",
-    "Ecriba *Finalizar* para terminar la conversacion",
+    "Escriba *Finalizar* para terminar la conversacion",
   ]);
-  const createTable  = () => {     
-    let query = "CREATE TABLE IF NOT EXISTS usuarios (nombre varchar(255), apellidos varchar(255), correo varchar(255));";
-    connection.connect();
-    connection.query(query, function (error, results, fields) {
-      if (error) {
-        console.log(error)
-        //throw error;      
-      }
-    });     
-  }
 
-  const exists = async (datos) => {
-    let ex = false;    
-    let query = "SELECT * FROM usuarios WHERE correo = '"+datos.Correo+"';";
-    await connection.query(query, function (error, results, fields) {
-      if (error) throw error;
-      console.log(results, fields);
-      ex = fields.length > 0;
-    });     
-    return ex;
-  }
+const flowSalida = addKeyword([
+  "finalizar",
+  "Finalizar",
+  "fin",
+  "terminar",
+  "Terminar",
+]).addAnswer([
+  "Gracias!!😁 por comunicarte con la escuela de Computación e Informática de CEDUC UCN Sede Coquimbo",
+  "",
+  "estaremos en contacto nuevamente !!!",
+]);
+  
 
-  const setDataToDB = async (datos) => {        
-    if(await exists(datos) == false){     
-      console.log(datos);      
-      let query = "INSERT INTO usuarios VALUES ('"+datos.Nombre+"', '"+datos.Apellidos+"', '"+datos.Correo+"');";
-      console.log(query);
-      connection.query(query, function (error, results, fields) {
-        if (error) throw error;      
-      });       
-      return true;
-    } else {
-      console.log("El usuario ya existe, no se puede guardar");
-      return false;
-    }    
-  }
-
-const main = async () => {  
-  const adapterDB = new MySQLAdapter({
-    host: MYSQL_DB_HOST,
-    user: MYSQL_DB_USER,
-    database: MYSQL_DB_NAME,
-    password: MYSQL_DB_PASSWORD,
-    port: MYSQL_DB_PORT,
-  });
-  createTable();  
+const main = async () => {
     
   const adapterFlow = createFlow([
-    flowcomentario,
-    flownomegusto,
-    flowcanva,
-    flowmegusto,
     flowSaludo,
-    flowpregunta,
-    flowAgartha,
-    flowTerminar,
-    flowSecundario,
-    flowpmenu,
+    carreraCiber,
+    carreraProgra,
+    mallaCiber,
+    mallaProgra,    
+    flowSalida,
   ]);
   const adapterProvider = createProvider(BaileysProvider);
   createBot({
     flow: adapterFlow,
-    provider: adapterProvider,
-    database: adapterDB,
+    provider: adapterProvider
   });
   QRPortalWeb();
 };
